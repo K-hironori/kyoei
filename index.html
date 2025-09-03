@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>享栄高校硬式野球部OB・OG会 支援サイト</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #001f3f;
+            background-color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            height: 100vh;
+            background: url('./baseball-background.png') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.8) 0%, rgba(0, 31, 63, 0.6) 50%, rgba(212, 179, 93, 0.3) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        /* ヒーロー小見出し（サブタイトル） */
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #D4B35D;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 179, 93, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #c8a952;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 179, 93, 0.4);
+        }
+
+        /* セクション共通スタイル */
+        section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #001f3f;
+        }
+
+        /* メッセージセクション */
+        .message {
+            background: #f8f9fa;
+        }
+
+        .message-content {
+            text-align: left;
+        }
+
+        .message h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .message p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* 支援プランセクション */
+        #support {
+            background: white;
+        }
+
+        .plan-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: 0 5px 25px rgba(0, 31, 63, 0.1);
+            text-align: center;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 31, 63, 0.15);
+            border-color: #D4B35D;
+        }
+
+        .plan-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #001f3f;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #D4B35D;
+            margin-bottom: 20px;
+        }
+
+        .plan-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 支援金の使い道セクション */
+        .usage {
+            background: #f8f9fa;
+        }
+
+        .usage-items {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .usage-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 31, 63, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .usage-icon {
+            font-size: 2.5rem;
+            color: #D4B35D;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .usage-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #001f3f;
+        }
+
+        .usage-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 支援方法セクション */
+        .support-method {
+            background: white;
+        }
+
+        .bank-info {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 4px solid #D4B35D;
+        }
+
+        .bank-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #001f3f;
+        }
+
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bank-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .bank-detail:last-child {
+            border-bottom: none;
+        }
+
+        .bank-label {
+            font-weight: 600;
+            color: #001f3f;
+        }
+
+        .bank-value {
+            font-weight: 400;
+            text-align: right;
+        }
+
+        .completion-notice {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid #D4B35D;
+        }
+
+        .completion-notice p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* FAQセクション */
+        .faq {
+            background: #f8f9fa;
+        }
+
+        .faq-items {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 31, 63, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #001f3f;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #D4B35D;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* フッター */
+        footer {
+            background: #001f3f;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .plan-price {
+                font-size: 1.8rem;
+            }
+            
+            .usage-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>OB・OG会費が、次の主役を育てる。<br><span class="hero-subtitle">〜皆様のOB・OG会費は、会の運営と現役選手の支援に活用します。〜</span></h1>
+            <p></p>
+            <a href="#support" class="cta-button">会費で選手を応援する</a>
+        </div>
+    </section>
+
+    <!-- メッセージセクション -->
+    <section class="message">
+        <div class="container">
+            <h2 class="section-title">ごあいさつ</h2>
+            <div class="message-content">
+                <p>享栄高校硬式野球部OB・OG会の皆様、いつも温かいご支援をいただき、誠にありがとうございます。</p>
+                <p>母校の野球部は、甲子園出場を目指し日々厳しい練習に励んでおります。しかし、質の高い練習環境の維持や選手の育成には多くの費用が必要です。</p>
+                <p>私たちOB・OG会では、後輩たちが最高のパフォーマンスを発揮できるよう、設備の充実と指導体制の強化に取り組んでおります。</p>
+                <p>皆様のご支援が、選手たちの夢の実現と母校の発展に直結いたします。ぜひとも継続的なお力添えをお願いいたします。</p>
+                <p style="text-align: right; margin-top: 30px; font-weight: 600;">享栄高校硬式野球部OB・OG会 会長</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支援プランセクション -->
+    <section id="support">
+        <div class="container">
+            <h2 class="section-title">支援プラン</h2>
+            <div class="plan-cards">
+                <div class="plan-card">
+                    <h3>年会費プラン</h3>
+                    <div class="plan-price">¥5,000</div>
+                    <div class="plan-description">
+                        OB・OG会の年会費として、継続的な支援をお願いいたします。選手の育成強化費や練習環境の維持に活用させていただきます。
+                    </div>
+                </div>
+                <div class="plan-card">
+                    <h3>応援会費プラン</h3>
+                    <div class="plan-price">¥1,000〜</div>
+                    <div class="plan-description">
+                        お気持ちに応じた金額でのご支援をお受けいたします。試合遠征費や備品購入費など、幅広い用途に活用させていただきます。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支援金の使い道セクション -->
+    <section class="usage">
+        <div class="container">
+            <h2 class="section-title">支援金の使い道</h2>
+            <div class="usage-items">
+                <div class="usage-item">
+                    <div class="usage-icon">⚾</div>
+                    <div class="usage-content">
+                        <h3>選手の育成強化費</h3>
+                        <p>質の高い指導者の確保、栄養管理、体力強化プログラムなど、選手の総合的な成長をサポートします。</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon">🏟️</div>
+                    <div class="usage-content">
+                        <h3>練習環境の維持向上費</h3>
+                        <p>グラウンド整備、練習用具の更新、施設の改修など、最適な練習環境の維持に活用します。</p>
+                    </div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon">👥</div>
+                    <div class="usage-content">
+                        <h3>OB・OG会運営費</h3>
+                        <p>会報発行、イベント開催、選手との交流会など、OB・OG会活動の運営費用として使用します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ご支援の方法セクション -->
+    <section class="support-method">
+        <div class="container">
+            <h2 class="section-title">ご支援の方法</h2>
+            <div class="bank-info">
+                <h3>銀行振込</h3>
+                <div class="bank-details">
+                    <div class="bank-detail">
+                        <span class="bank-label">金融機関名</span>
+                        <span class="bank-value">三菱UFJ銀行</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">支店名</span>
+                        <span class="bank-value">名古屋支店</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">口座種別</span>
+                        <span class="bank-value">普通預金</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">口座番号</span>
+                        <span class="bank-value">1234567</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">口座名義</span>
+                        <span class="bank-value">享栄高校野球部OB・OG会</span>
+                    </div>
+                </div>
+            </div>
+            <div class="completion-notice">
+                <p>お振込み完了後は、お手数ですがOB・OG会公式LINEまでお知らせください。領収書の発行も可能です。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQセクション -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        支援金の税額控除は受けられますか？
+                    </button>
+                    <div class="faq-answer">
+                        <p>申し訳ございませんが、当OB・OG会への寄付は税額控除の対象外となります。ただし、領収書の発行は可能ですので、ご希望の方はお知らせください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        年会費は毎年支払う必要がありますか？
+                    </button>
+                    <div class="faq-answer">
+                        <p>年会費は年度ごとのお支払いをお願いしております。毎年4月頃にお振込みのご案内をお送りいたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        支援金の使用状況は報告してもらえますか？
+                    </button>
+                    <div class="faq-answer">
+                        <p>年2回発行している会報にて、支援金の使用状況や部の活動報告をお届けしております。透明性を保った運営を心がけております。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 享栄高校硬式野球部OB・OG会. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQアコーディオン機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // すべてのFAQを閉じる
+                    faqQuestions.forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // クリックされたFAQが閉じている場合のみ開く
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
