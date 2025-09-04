@@ -607,6 +607,9 @@
                 <p>私たちOB・OG会では、後輩たちが最高のパフォーマンスを発揮できるよう、設備の充実と指導体制の強化に取り組んでおります。</p>
                 <p>皆様のご支援が、選手たちの夢の実現と母校の発展に直結いたします。ぜひとも継続的なお力添えをお願いいたします。</p>
                 <p style="text-align: right; margin-top: 30px; font-weight: 600;">享栄高校硬式野球部OB・OG会 会長</p>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#support-method" class="cta-button">会費で選手を応援する</a>
+                </div>
             </div>
         </div>
     </section>
@@ -654,7 +657,7 @@
         </div>
     </section>
 
-    <!-- ご支援の方法セクション -->
+    <!-- 応援の方法セクション -->
     <section id="support-method" class="support-method">
         <div class="container">
             <h2 class="section-title">応援の方法</h2>
@@ -755,10 +758,10 @@
                 });
             });
 
-            // スムーススクロール機能
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('click', function(e) {
+            // スムーススクロール機能（全てのCTAボタンに対応）
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
@@ -770,7 +773,7 @@
                         });
                     }
                 });
-            }
+            });
         });
 
         // コピー機能
