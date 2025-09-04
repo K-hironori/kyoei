@@ -251,6 +251,37 @@
             text-align: right;
         }
 
+        .bank-value-with-copy {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .copy-account-button {
+            background: #D4B35D;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(212, 179, 93, 0.3);
+        }
+
+        .copy-account-button:hover {
+            background: #c8a952;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 179, 93, 0.4);
+        }
+
+        .copy-account-button.copied {
+            background: #4CAF50;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
         .completion-notice {
             background: #e8f4fd;
             padding: 30px;
@@ -526,6 +557,17 @@
                 font-weight: 600;
                 color: #001f3f;
             }
+
+            .bank-value-with-copy {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 8px;
+            }
+
+            .copy-account-button {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
             
             /* LINE ボタン */
             .line-button {
@@ -678,7 +720,10 @@
                     </div>
                     <div class="bank-detail">
                         <span class="bank-label">口座番号</span>
-                        <span class="bank-value">０３７０７４４</span>
+                        <div class="bank-value-with-copy">
+                            <span class="bank-value">０３７０７４４</span>
+                            <button class="copy-account-button" onclick="copyAccountNumber()">コピー</button>
+                        </div>
                     </div>
                     <div class="bank-detail">
                         <span class="bank-label">口座名義</span>
@@ -808,6 +853,43 @@
                 // 2秒後に元に戻す
                 setTimeout(function() {
                     button.textContent = '「応援」をコピー';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // 口座番号コピー機能
+        function copyAccountNumber() {
+            const accountNumber = '0370744';
+            const button = document.querySelector('.copy-account-button');
+            
+            // クリップボードにコピー
+            navigator.clipboard.writeText(accountNumber).then(function() {
+                // 成功時の表示変更
+                button.textContent = 'コピー済み';
+                button.classList.add('copied');
+                
+                // 2秒後に元に戻す
+                setTimeout(function() {
+                    button.textContent = 'コピー';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                // 古いブラウザ対応
+                const textArea = document.createElement('textarea');
+                textArea.value = accountNumber;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // 成功時の表示変更
+                button.textContent = 'コピー済み';
+                button.classList.add('copied');
+                
+                // 2秒後に元に戻す
+                setTimeout(function() {
+                    button.textContent = 'コピー';
                     button.classList.remove('copied');
                 }, 2000);
             });
