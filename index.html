@@ -657,7 +657,7 @@
     <!-- ご支援の方法セクション -->
     <section id="support-method" class="support-method">
         <div class="container">
-            <h2 class="section-title">ご支援の方法</h2>
+            <h2 class="section-title">応援の方法</h2>
             <div class="bank-info">
                 <h3>銀行振込</h3>
                 <div class="bank-details">
@@ -754,6 +754,23 @@
                     }
                 });
             });
+
+            // スムーススクロール機能
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
         });
 
         // コピー機能
