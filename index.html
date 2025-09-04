@@ -687,9 +687,9 @@
                 </div>
             </div>
             <div class="completion-notice">
-                <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで振込完了報告</a>
-                <button class="copy-button" onclick="copyText()">「振込完了」をコピー</button>
-                <p>温かいご支援をいただき、誠にありがとうございます。<br><br>お振込みが完了いたしましたら、確認をスムーズに行うため、<br>公式LINEアカウントまで「振込完了」とご一報いただけますと幸いです。<br>領収書をご希望の場合は、その旨も併せてお知らせください。</p>
+                <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで"応援"を報告</a>
+                <button class="copy-button" onclick="copyText()">「応援」をコピー</button>
+                <p>温かいご支援をいただき、誠にありがとうございます。<br><br>お振込みが完了いたしましたら、確認をスムーズに行うため、<br>公式LINEアカウントまで「応援」とご一報いただけますと幸いです。<br>領収書をご希望の場合は、その旨も併せてお知らせください。</p>
             </div>
         </div>
     </section>
@@ -778,7 +778,7 @@
 
         // コピー機能
         function copyText() {
-            const text = '振込完了';
+            const text = '応援';
             const button = document.querySelector('.copy-button');
             
             // クリップボードにコピー
@@ -789,7 +789,7 @@
                 
                 // 2秒後に元に戻す
                 setTimeout(function() {
-                    button.textContent = '「振込完了」をコピー';
+                    button.textContent = '「応援」をコピー';
                     button.classList.remove('copied');
                 }, 2000);
             }).catch(function() {
@@ -807,7 +807,7 @@
                 
                 // 2秒後に元に戻す
                 setTimeout(function() {
-                    button.textContent = '「振込完了」をコピー';
+                    button.textContent = '「応援」をコピー';
                     button.classList.remove('copied');
                 }, 2000);
             });
