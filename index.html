@@ -281,6 +281,41 @@
             background: #05b34c;
         }
 
+        .copy-button {
+            display: block;
+            width: 90%;
+            max-width: 320px;
+            margin: 0 auto 20px auto;
+            background: #f0f0f0;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .copy-button:hover {
+            background: #e0e0e0;
+            border-color: #ccc;
+        }
+
+        .copy-button:active {
+            background: #d0d0d0;
+            transform: translateY(1px);
+        }
+
+        .copy-button.copied {
+            background: #4CAF50;
+            color: white;
+            border-color: #45a049;
+        }
+
         .completion-notice p {
             font-size: 0.95rem;
             line-height: 1.6;
@@ -650,6 +685,7 @@
             </div>
             <div class="completion-notice">
                 <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで振込完了報告</a>
+                <button class="copy-button" onclick="copyText()">「振込完了」をコピー</button>
                 <p>温かいご支援をいただき、誠にありがとうございます。<br><br>お振込みが完了いたしましたら、確認をスムーズに行うため、<br>公式LINEアカウントまで「振込完了」とご一報いただけますと幸いです。<br>領収書をご希望の場合は、その旨も併せてお知らせください。</p>
             </div>
         </div>
@@ -719,6 +755,43 @@
                 });
             });
         });
+
+        // コピー機能
+        function copyText() {
+            const text = '振込完了';
+            const button = document.querySelector('.copy-button');
+            
+            // クリップボードにコピー
+            navigator.clipboard.writeText(text).then(function() {
+                // 成功時の表示変更
+                button.textContent = 'コピーしました！';
+                button.classList.add('copied');
+                
+                // 2秒後に元に戻す
+                setTimeout(function() {
+                    button.textContent = '「振込完了」をコピー';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                // 古いブラウザ対応
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // 成功時の表示変更
+                button.textContent = 'コピーしました！';
+                button.classList.add('copied');
+                
+                // 2秒後に元に戻す
+                setTimeout(function() {
+                    button.textContent = '「振込完了」をコピー';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
