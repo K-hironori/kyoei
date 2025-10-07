@@ -579,7 +579,7 @@
                 <p>温かいご支援をいただき、誠にありがとうございます。</p>
                 <p>お振込みの確認をスムーズに行うため、お手数ですが以下のご協力をお願いいたします。</p>
                 <ol>
-                    <li>「応援をコピー」ボタンをタップし、「"応援"」というメッセージをコピーしてください。</li>
+                    <li>「応援をコピー」ボタンをタップし、「応援」というメッセージをコピーしてください。</li>
                     <li>「公式LINEで"応援"を報告」ボタンをタップしてLINEを開き、コピーしたメッセージを貼り付け（ペースト）、そのまま送信してください。</li>
                 </ol>
                 <p>領収書をご希望の場合は、LINEにてその旨も併せてお知らせください。</p>
@@ -653,7 +653,7 @@
 
             // コピー機能
             window.copyText = function() {
-                const textToCopy = '"応援"';
+                const textToCopy = '応援';
                 navigator.clipboard.writeText(textToCopy).then(function() {
                     const button = document.querySelector('.copy-button');
                     button.textContent = 'コピーしました！';
