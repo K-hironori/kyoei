@@ -281,7 +281,61 @@
         .completion-notice p {
             font-size: 0.95rem;
             line-height: 1.6;
-            text-align: center;
+            text-align: left;
+            margin-bottom: 1em;
+        }
+
+        .completion-notice ol {
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1em;
+        }
+
+        .line-button {
+            display: inline-block;
+            background: #06C755;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .line-button:hover {
+            background: #05B04B;
+            transform: translateY(-2px);
+        }
+
+        .copy-button {
+            display: inline-block;
+            background: #D4B35D;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background: #c8a952;
+            transform: translateY(-2px);
+        }
+
+        .copy-button.copied {
+            background: #4CAF50;
+            color: white;
+            border-color: #45a049;
         }
 
         /* FAQセクション */
@@ -483,7 +537,15 @@
                 </div>
             </div>
             <div class="completion-notice">
-                <p>お振込み完了後は、お手数ですがOB・OG会公式LINEまでお知らせください。領収書の発行も可能です。</p>
+                <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで"応援"を報告</a>
+                <button class="copy-button" onclick="copyText()">「"応援"をコピー」</button>
+                <p>温かいご支援をいただき、誠にありがとうございます。</p>
+                <p>お振込みの確認をスムーズに行うため、お手数ですが以下のご協力をお願いいたします。</p>
+                <ol>
+                    <li>「"応援"をコピー」ボタンをタップし、「"応援"」というメッセージをコピーしてください。</li>
+                    <li>「公式LINEで"応援"を報告」ボタンをタップしてLINEを開き、コピーしたメッセージを貼り付け（ペースト）、そのまま送信してください。</li>
+                </ol>
+                <p>領収書をご希望の場合は、LINEにてその旨も併せてお知らせください。</p>
             </div>
         </div>
     </section>
@@ -551,6 +613,23 @@
                     }
                 });
             });
+
+            // コピー機能
+            window.copyText = function() {
+                const textToCopy = '"応援"';
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    const button = document.querySelector('.copy-button');
+                    button.textContent = 'コピーしました！';
+                    button.classList.add('copied');
+
+                    setTimeout(function() {
+                        button.textContent = '「"応援"をコピー」';
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(function(err) {
+                    alert('コピーに失敗しました。手動でコピーしてください。');
+                });
+            }
         });
     </script>
 </body>
