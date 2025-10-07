@@ -420,26 +420,62 @@
         }
 
         /* レスポンシブ対応 */
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            /* ヒーローセクション */
             .hero h1 {
                 font-size: 1.8rem;
             }
-            
+
             .hero p {
                 font-size: 1rem;
             }
-            
+
             .section-title {
                 font-size: 1.6rem;
             }
-            
+
             .plan-price {
                 font-size: 1.8rem;
             }
-            
+
             .usage-item {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            /* ボタンのモバイル最適化 */
+            .line-button,
+            .copy-button {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                padding: 15px 20px;
+                margin: 10px 0;
+                font-size: 0.95rem;
+                box-sizing: border-box;
+            }
+
+            .completion-notice {
+                padding: 20px 15px;
+            }
+
+            .completion-notice p {
+                font-size: 0.9rem;
+                margin-bottom: 0.8em;
+            }
+
+            .completion-notice ol {
+                font-size: 0.9rem;
+                padding-left: 20px;
+                margin-bottom: 0.8em;
+            }
+
+            .completion-notice ol li {
+                margin-bottom: 0.6em;
+            }
+
+            section {
+                padding: 35px 10px;
             }
         }
     </style>
