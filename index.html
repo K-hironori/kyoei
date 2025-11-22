@@ -276,21 +276,80 @@
             border-radius: 10px;
             margin-top: 30px;
             border: 1px solid #D4B35D;
+        }
+
+        .completion-notice > p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+
+        .steps-container {
+            margin-top: 30px;
+        }
+
+        .step {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 31, 63, 0.05);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #D4B35D;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #001f3f;
+            margin: 0;
+        }
+
+        .step-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 15px;
+            padding-left: 48px;
+        }
+
+        .step-action {
+            padding-left: 48px;
+        }
+
+        .final-note {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
             text-align: center;
         }
 
-        .completion-notice p {
-            font-size: 0.95rem;
+        .final-note p {
+            font-size: 0.9rem;
             line-height: 1.6;
-            text-align: left;
-            margin-bottom: 1em;
-        }
-
-        .completion-notice ol {
-            text-align: left;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1em;
+            color: #666;
+            margin: 0;
         }
 
         .line-button {
@@ -451,28 +510,38 @@
                 width: 100%;
                 max-width: 100%;
                 padding: 15px 20px;
-                margin: 10px 0;
+                margin: 0;
                 font-size: 0.95rem;
                 box-sizing: border-box;
+            }
+
+            .step-header {
+                flex-direction: row;
+            }
+
+            .step-title {
+                font-size: 1rem;
             }
 
             .completion-notice {
                 padding: 20px 15px;
             }
 
-            .completion-notice p {
-                font-size: 0.9rem;
-                margin-bottom: 0.8em;
+            .step {
+                padding: 20px 15px;
             }
 
-            .completion-notice ol {
-                font-size: 0.9rem;
-                padding-left: 20px;
-                margin-bottom: 0.8em;
+            .step-description {
+                padding-left: 0;
+                margin-top: 10px;
             }
 
-            .completion-notice ol li {
-                margin-bottom: 0.6em;
+            .step-action {
+                padding-left: 0;
+            }
+
+            .final-note {
+                padding: 15px;
             }
 
             section {
@@ -574,15 +643,35 @@
                 </div>
             </div>
             <div class="completion-notice">
-                <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで"応援"を報告</a>
-                <button class="copy-button" onclick="copyText()">応援をコピー</button>
-                <p>温かいご支援をいただき、誠にありがとうございます。</p>
-                <p>お振込みの確認をスムーズに行うため、お手数ですが以下のご協力をお願いいたします。</p>
-                <ol>
-                    <li>「応援をコピー」ボタンをタップし、「応援」というメッセージをコピーしてください。</li>
-                    <li>「公式LINEで"応援"を報告」ボタンをタップしてLINEを開き、コピーしたメッセージを貼り付け（ペースト）、そのまま送信してください。</li>
-                </ol>
-                <p>領収書をご希望の場合は、LINEにてその旨も併せてお知らせください。</p>
+                <p>温かいご支援をいただき、誠にありがとうございます。<br>お振込みの確認をスムーズに行うため、お手数ですが以下のご協力をお願いいたします。</p>
+
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h3 class="step-title">「応援」をコピー</h3>
+                        </div>
+                        <p class="step-description">下のボタンをタップして、「応援」というメッセージをコピーしてください。</p>
+                        <div class="step-action">
+                            <button class="copy-button" onclick="copyText()">応援をコピー</button>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h3 class="step-title">公式LINEで報告</h3>
+                        </div>
+                        <p class="step-description">下のボタンをタップしてLINEを開き、コピーした「応援」を貼り付けて送信してください。</p>
+                        <div class="step-action">
+                            <a href="https://lin.ee/mmP0zOf" class="line-button" target="_blank" rel="noopener noreferrer">公式LINEで"応援"を報告</a>
+                        </div>
+                    </div>
+
+                    <div class="final-note">
+                        <p>領収書をご希望の場合は、LINEにてその旨も併せてお知らせください。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
